@@ -1,0 +1,206 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Velora Élise design system.
+ * Brand: deep wine (#5E1821) + antique gold (#C89B4B) on warm ivory.
+ * All colors use oklch. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-wine: var(--wine);
+  --color-wine-deep: var(--wine-deep);
+  --color-ivory: var(--ivory);
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+
+  --wine: oklch(0.322 0.104 19.5);
+  --wine-deep: oklch(0.245 0.082 19.5);
+  --gold: oklch(0.724 0.093 79.5);
+  --gold-soft: oklch(0.87 0.045 82);
+  --ivory: oklch(0.977 0.008 85);
+
+  --background: oklch(0.977 0.008 85);
+  --foreground: oklch(0.245 0.03 30);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.245 0.03 30);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.245 0.03 30);
+  --primary: oklch(0.322 0.104 19.5);
+  --primary-foreground: oklch(0.977 0.008 85);
+  --secondary: oklch(0.945 0.018 82);
+  --secondary-foreground: oklch(0.322 0.104 19.5);
+  --muted: oklch(0.945 0.014 80);
+  --muted-foreground: oklch(0.52 0.025 40);
+  --accent: oklch(0.724 0.093 79.5);
+  --accent-foreground: oklch(0.245 0.082 19.5);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.98 0.005 85);
+  --border: oklch(0.9 0.018 80);
+  --input: oklch(0.9 0.018 80);
+  --ring: oklch(0.724 0.093 79.5);
+
+  --shadow-soft: 0 1px 2px oklch(0.322 0.104 19.5 / 0.06), 0 12px 32px oklch(0.322 0.104 19.5 / 0.08);
+  --shadow-lift: 0 18px 44px oklch(0.322 0.104 19.5 / 0.16);
+  --gradient-wine: linear-gradient(135deg, var(--wine-deep), var(--wine));
+  --gradient-gold: linear-gradient(120deg, oklch(0.66 0.085 74), var(--gold), oklch(0.86 0.06 86));
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-lift {
+  box-shadow: var(--shadow-lift);
+}
+
+@utility bg-wine-gradient {
+  background-image: var(--gradient-wine);
+}
+
+@utility text-gold-gradient {
+  background-image: var(--gradient-gold);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+@utility rule-gold {
+  &::after {
+    content: "";
+    display: block;
+    width: 3.5rem;
+    height: 1px;
+    margin-top: 0.9rem;
+    background-image: var(--gradient-gold);
+  }
+}
+
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.4rem;
+  transition: all 200ms ease;
+  cursor: pointer;
+  line-height: 1.2;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@utility btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-wine-deep);
+  }
+}
+
+@utility btn-gold {
+  background-image: var(--gradient-gold);
+  color: var(--color-wine-deep);
+
+  &:hover:not(:disabled) {
+    filter: brightness(1.06);
+  }
+}
+
+@utility btn-outline {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: transparent;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+}
+
+@utility field {
+  width: 100%;
+  border: 1px solid var(--color-input);
+  background-color: var(--color-card);
+  border-radius: var(--radius);
+  padding: 0.65rem 0.85rem;
+  font-size: 0.9rem;
+  color: var(--color-foreground);
+  outline: none;
+
+  &:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px oklch(0.724 0.093 79.5 / 0.2);
+  }
+}
